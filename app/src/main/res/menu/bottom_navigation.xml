@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/item_nuevo"
+        android:icon="@drawable/ic_baseline_add_business_24"
+        android:title="@string/navBar_item_nuevo" />
+    <item
+        android:id="@+id/item_mapa"
+        android:icon="@drawable/ic_baseline_map_24"
+        android:title="@string/navBar_item_mapa" />
+    <item
+        android:id="@+id/item_buscar"
+        android:icon="@drawable/ic_outline_search_24"
+        android:title="@string/navBar_item_buscar" />
+
+</menu>
