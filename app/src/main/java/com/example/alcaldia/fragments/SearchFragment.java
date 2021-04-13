@@ -7,13 +7,17 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.alcaldia.ItemSearchAdapter;
 import com.example.alcaldia.R;
 
 public class SearchFragment extends Fragment {
 
-    private RecyclerView recyclerView;
+    private RecyclerView placesRecyclerViewList;
+    private LinearLayoutManager layoutManager;
+    private ItemSearchAdapter adapter;
     private TextView nombreBuscar;
 
 
@@ -29,13 +33,14 @@ public class SearchFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+    
         View root =  inflater.inflate(R.layout.fragment_search, container, false);
-        recyclerView = root.findViewById(R.id.recyclerView);
-        nombreBuscar = root.findViewById(R.id.nombreBuscar);
-
-
-
+        placesRecyclerViewList = root.findViewById(R.id.placesRecyclerViewList);
+        placesRecyclerViewList.setHasFixedSize(true);
+        placesRecyclerViewList.setLayoutManager(new LinearLayoutManager(root.getContext()));
+        
+        adapter = new ItemSearchAdapter();
+        placesRecyclerViewList.setAdapter(adapter);
         return root;
     }
 }
