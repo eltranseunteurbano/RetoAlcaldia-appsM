@@ -1,12 +1,14 @@
 package com.example.alcaldia;
 
+import android.widget.ImageView;
+
 public class ItemSearch {
   private String id;
   private String name;
   private Double rate;
-  private String image;
+  private int image;
   
-  public ItemSearch ( String id, String name, Double rate, String image ) {
+  public ItemSearch ( String id, String name, Double rate, int image ) {
     this.id = id;
     this.name = name;
     this.rate = rate;
@@ -41,11 +43,12 @@ public class ItemSearch {
     this.rate = rate;
   }
   
-  public String getImage () {
+  public int getImage () {
     return image;
   }
   
-  public void setImage ( String image ) {
+  public void setImage ( int image ) {
     this.image = image;
+    
   }
 }

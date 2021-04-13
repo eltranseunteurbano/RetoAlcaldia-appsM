@@ -3,6 +3,7 @@ package com.example.alcaldia;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -17,9 +18,9 @@ public class ItemSearchAdapter extends RecyclerView.Adapter<ItemSearchView> {
   public ItemSearchAdapter () {
     itemsSearch = new ArrayList<>();
   
-    itemsSearch.add(new ItemSearch(UUID.randomUUID().toString(), "Estadio pascual guerrero", 4.0, "" ));
-    itemsSearch.add(new ItemSearch(UUID.randomUUID().toString(), "Tardes caleñas", 4.2, "" ));
-    itemsSearch.add(new ItemSearch(UUID.randomUUID().toString(), "Universidad Icesi", 3.2, "" ));
+    itemsSearch.add(new ItemSearch(UUID.randomUUID().toString(), "Estadio pascual guerrero", 4.0,  R.drawable.pascualGuerrero_background ));
+    itemsSearch.add(new ItemSearch(UUID.randomUUID().toString(), "Tardes caleñas", 4.2, R.drawable.pascualGuerrero_background ));
+    itemsSearch.add(new ItemSearch(UUID.randomUUID().toString(), "Universidad Icesi", 3.2, R.drawable.pascualGuerrero_background));
   }
   
   public void addItemSearch(ItemSearch itemSearch){
@@ -40,7 +41,7 @@ public class ItemSearchAdapter extends RecyclerView.Adapter<ItemSearchView> {
   public void onBindViewHolder ( @NonNull ItemSearchView holder, int position ) {
     holder.getName().setText(itemsSearch.get(position).getName());
     holder.getRate().setText(itemsSearch.get(position).getRate().toString());
-    
+    holder.getImage().setImageResource(itemsSearch.get(position).getImage());
   }
   
   @Override
