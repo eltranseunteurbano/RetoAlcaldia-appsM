@@ -38,7 +38,9 @@ public class SearchFragment extends Fragment {
         placesRecyclerViewList = root.findViewById(R.id.placesRecyclerViewList);
         placesRecyclerViewList.setHasFixedSize(true);
         placesRecyclerViewList.setLayoutManager(new LinearLayoutManager(root.getContext()));
-        
+        //layoutManager=new LinearLayoutManager(this);
+
+
         adapter = new ItemSearchAdapter();
         placesRecyclerViewList.setAdapter(adapter);
         return root;

@@ -9,14 +9,14 @@ import android.os.Bundle;
 import android.transition.Scene;
 
 import com.example.alcaldia.fragments.BussinessFragment;
-import com.example.alcaldia.fragments.MapFragment;
+import com.example.alcaldia.fragments.MapsFragment;
 import com.example.alcaldia.fragments.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
     private BussinessFragment bussinessFragment;
-    private MapFragment mapFragment;
+    private MapsFragment mapFragment;
     private SearchFragment searchFragment;
     private Scene scene;
 
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         bussinessFragment = BussinessFragment.newInstance();
-        mapFragment = MapFragment.newInstance();
+        mapFragment = MapsFragment.newInstance();
         searchFragment = SearchFragment.newInstance();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.buttom_navigation);
@@ -56,5 +56,9 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.main_content, fragment);
         transaction.commit();
+    }
+
+    public void showMapFragment(Fragment fragment){
+
     }
 }
