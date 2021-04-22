@@ -24,7 +24,7 @@ public class BussinessFragment extends Fragment implements View.OnClickListener 
     private TextView textDirection;
     private Button buttonRegister;
     private static String direction;
-    private MapFragment mapFragment;
+    private MapsFragment mapFragment;
 
 
 
@@ -46,7 +46,7 @@ public class BussinessFragment extends Fragment implements View.OnClickListener 
         imageButtonadd = root.findViewById(R.id.imageButtonadd);
         imageDirection = root.findViewById(R.id.imageDirection);
         textDirection = root.findViewById(R.id.textDirection);
-        mapFragment = MapFragment.newInstance();
+        mapFragment = MapsFragment.newInstance();
 
         mapButton = root.findViewById(R.id.mapButton);
         mapButton.setOnClickListener(this);
