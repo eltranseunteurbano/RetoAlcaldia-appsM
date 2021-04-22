@@ -18,9 +18,9 @@ public class ItemSearchAdapter extends RecyclerView.Adapter<ItemSearchView> {
   public ItemSearchAdapter () {
     itemsSearch = new ArrayList<>();
   
-    itemsSearch.add(new ItemSearch(UUID.randomUUID().toString(), "Estadio pascual guerrero", 4.0,  R.drawable.pascualGuerrero_background ));
-    itemsSearch.add(new ItemSearch(UUID.randomUUID().toString(), "Tardes caleñas", 4.2, R.drawable.pascualGuerrero_background ));
-    itemsSearch.add(new ItemSearch(UUID.randomUUID().toString(), "Universidad Icesi", 3.2, R.drawable.pascualGuerrero_background));
+    itemsSearch.add(new ItemSearch(UUID.randomUUID().toString(), "Estadio pascual guerrero", 4.0,  R.drawable.pascual_guerrero_background ));
+    itemsSearch.add(new ItemSearch(UUID.randomUUID().toString(), "Tardes caleñas", 4.2, R.drawable.pascual_guerrero_background ));
+    itemsSearch.add(new ItemSearch(UUID.randomUUID().toString(), "Universidad Icesi", 3.2, R.drawable.pascual_guerrero_background));
   }
   
   public void addItemSearch(ItemSearch itemSearch){
