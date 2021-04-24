@@ -1,12 +1,17 @@
     package com.example.alcaldia;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.transition.Scene;
+import android.widget.Toast;
 
 import com.example.alcaldia.fragments.BussinessFragment;
 import com.example.alcaldia.fragments.MapsFragment;
@@ -31,6 +36,12 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.buttom_navigation);
 
+        ActivityCompat.requestPermissions(this, new String[]{
+                Manifest.permission.CAMERA,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+        }, 0);
+
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 option -> {
                     switch (option.getItemId()){
@@ -49,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         );
 
         showFragment(bussinessFragment);
+
     }
 
     public void showFragment(Fragment fragment){
@@ -58,7 +70,25 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
     }
 
-    public void showMapFragment(Fragment fragment){
+   /* @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode==PERMISSIONS_CALLBACK){
+            boolean allGrant = true;
+            for(int i =0; i<grantResults.length;i++){
+                if(grantResults[i]== PackageManager.PERMISSION_DENIED){
+                    allGrant=false;
+                    break;
+                }
+            }
+            if(allGrant){
+                Toast.makeText(this,"todos los permisos concedidos", Toast.LENGTH_LONG).show();
+            }
+            else{
+                Toast.makeText(this,"Alerta, no todos los permisos concedidos", Toast.LENGTH_LONG).show();
+            }
 
-    }
+        }
+    }*/
+
 }
