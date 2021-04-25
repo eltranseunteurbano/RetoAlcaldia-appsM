@@ -1,5 +1,6 @@
 package com.example.alcaldia;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.UUID;
+
+import static android.util.Log.println;
 
 public class ItemSearchAdapter extends RecyclerView.Adapter<ItemSearchView> {
   private ArrayList<ItemSearch> itemsSearch;
@@ -26,6 +29,7 @@ public class ItemSearchAdapter extends RecyclerView.Adapter<ItemSearchView> {
   public void addItemSearch(ItemSearch itemSearch){
     itemsSearch.add(itemSearch);
   }
+  
   
   @NonNull
   @Override
