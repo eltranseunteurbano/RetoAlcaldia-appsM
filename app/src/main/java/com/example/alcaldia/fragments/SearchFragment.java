@@ -12,8 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.alcaldia.ItemSearchAdapter;
 import com.example.alcaldia.R;
+import com.google.android.gms.maps.model.LatLng;
 
-public class SearchFragment extends Fragment {
+public class SearchFragment extends Fragment implements BussinessFragment.OnNewMapListener, BussinessFragment.PositionListener {
 
     private RecyclerView placesRecyclerViewList;
     private LinearLayoutManager layoutManager;
@@ -44,5 +45,15 @@ public class SearchFragment extends Fragment {
         adapter = new ItemSearchAdapter();
         placesRecyclerViewList.setAdapter(adapter);
         return root;
+    }
+
+    @Override
+    public void onDirectionMap(String directionName, String image) {
+
+    }
+
+    @Override
+    public void newMarker(String name, LatLng latLng) {
+
     }
 }

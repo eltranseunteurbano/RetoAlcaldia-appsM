@@ -6,6 +6,7 @@ import android.app.ActivityManager;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
@@ -27,9 +28,13 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.alcaldia.MainActivity;
 import com.example.alcaldia.R;
 import com.example.alcaldia.UtilDomi;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -76,19 +81,19 @@ public class BussinessFragment extends Fragment implements View.OnClickListener 
         buttonRegister = root.findViewById(R.id.buttonRegister);
         direction = map_direction_bussinesF.getEditText().toString();
 
-        if(path != null){
-            Bitmap bitmap = BitmapFactory.decodeFile(path);
-            imageDirection.setImageBitmap((bitmap));
-        }
+        file = new File(getActivity().getExternalFilesDir(null) + "/photo.png");
 
         imageButtonadd.setOnClickListener(
                 v->{
                     Intent j = new Intent((Intent.ACTION_GET_CONTENT));
                     j.setType(("image/*"));
                     startActivityForResult(j, GALLERY_CALLBACK);
-                    file = new File(getActivity().getExternalFilesDir(null) + "/photo.png");
                 }
         );
+        if(path != null){
+            Bitmap bitmap = BitmapFactory.decodeFile(path);
+            imageDirection.setImageBitmap((bitmap));
+        }
 
         return root;
     }
@@ -98,11 +103,18 @@ public class BussinessFragment extends Fragment implements View.OnClickListener 
 
         switch (view.getId()){
             case R.id.mapButton:
+                /*LatLng lg = null;
+                lg = getLatLngFromName(map_direction_bussinesF.getEditText().toString());
+                if(lg != null) {
+                    String street = getAddress(lg.latitude,lg.longitude);
+                    textDirection.setText(street);
+                }*/
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.main_content, mapFragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
+
                 break;
             case R.id.imageButtonadd:
                 /*fragmentTransaction.
@@ -115,14 +127,16 @@ public class BussinessFragment extends Fragment implements View.OnClickListener 
 
                 }
 
-        }
-
-
+       }
 
     }
 
     public interface OnNewMapListener{
-        void onDirectionMap(String direction);
+        void onDirectionMap(String directionName, String image);
+    }
+
+    public interface PositionListener{
+        void newMarker(String name, LatLng latLng);
     }
 
     @Override
@@ -134,5 +148,32 @@ public class BussinessFragment extends Fragment implements View.OnClickListener 
             Bitmap imagebn = BitmapFactory.decodeFile(path);
             imageDirection.setImageBitmap(imagebn);
         }
+    }
+
+    private String getAddress(double lat, double lon){
+        String address = "";
+        try {
+            List<Address> addresses;
+            geocoder = new Geocoder(getContext(), Locale.getDefault());
+            addresses = geocoder.getFromLocation(lat, lon, 1);
+            address = addresses.get(0).getAddressLine(0);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return address;
+    }
+
+    public LatLng getLatLngFromName(String nameAddrest)  {
+        LatLng latLng = null;
+        try {
+            int maxResultados = 1;
+            List<Address> adress = geocoder.getFromLocationName(nameAddrest, maxResultados);
+            if(adress.size() == 1) {
+                latLng = new LatLng(adress.get(0).getLatitude(), adress.get(0).getLongitude());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return latLng;
     }
 }
