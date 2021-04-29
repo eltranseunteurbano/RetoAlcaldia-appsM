@@ -6,6 +6,7 @@ import android.app.ActivityManager;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -45,6 +46,8 @@ public class BussinessFragment extends Fragment implements View.OnClickListener 
     private String path =null;
     public static final int GALLERY_CALLBACK = 11;
     private OnNewMapListener observer;
+    private Geocoder geocoder;
+    private File file;
 
 
     public BussinessFragment() {}
@@ -83,6 +86,7 @@ public class BussinessFragment extends Fragment implements View.OnClickListener 
                     Intent j = new Intent((Intent.ACTION_GET_CONTENT));
                     j.setType(("image/*"));
                     startActivityForResult(j, GALLERY_CALLBACK);
+                    file = new File(getActivity().getExternalFilesDir(null) + "/photo.png");
                 }
         );
 
@@ -106,6 +110,11 @@ public class BussinessFragment extends Fragment implements View.OnClickListener 
                 Intent i = new Intent(view.getContext(), MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivity(i);*/
                 break;
+            case R.id.buttonRegister:
+                if(map_direction_bussinesF!=null && file !=null && textDirection.getText().toString()!=""){
+
+                }
+
         }
 
 
