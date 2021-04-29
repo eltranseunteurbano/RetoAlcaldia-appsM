@@ -44,6 +44,7 @@ public class BussinessFragment extends Fragment implements View.OnClickListener 
     private MapsFragment mapFragment;
     private String path =null;
     public static final int GALLERY_CALLBACK = 11;
+    private OnNewMapListener observer;
 
 
     public BussinessFragment() {}
@@ -111,8 +112,8 @@ public class BussinessFragment extends Fragment implements View.OnClickListener 
 
     }
 
-    public interface OnNewMap{
-        void onNewMap(String direction);
+    public interface OnNewMapListener{
+        void onDirectionMap(String direction);
     }
 
     @Override
